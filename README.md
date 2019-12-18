@@ -32,3 +32,13 @@ CONTAINER_REGISTRY_PASSWORD_example=Cont_Reg_Password
                 }
               }
 ```
+
+## Publishing the messages(simulating the machine)
+
+As a machine simulator, the following project can be used to publish generic messages to the MQTT broker topic:
+https://github.com/kgalic/DeviceSimulator
+
+
+## Subscribing the messages(simulating the machine)
+
+Subscribing to the dedicated topic of the HiveMQ broker deployed on IoT Edge will result with triggering the method for handling certain topics. An example how to leverage HiveMQ MQTT client library can be found in the folder `HiveMQMachineSubscriber`
