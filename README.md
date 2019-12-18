@@ -5,7 +5,7 @@ This project demonstrates how to incorporate MQTT broker within IoT Edge, for ma
 ## Setting up the solution
 
 1. In deployment.template.json - deployment.debug.template.json add container registry credentials
-`
+```
             "registryCredentials": {
               "kresimiriotedgecontainerreg": {
                 "username": "$CONTAINER_REGISTRY_USERNAME_kresimiriotedgecontainerreg",
@@ -13,10 +13,10 @@ This project demonstrates how to incorporate MQTT broker within IoT Edge, for ma
                 "address": "kresimiriotedgecontainerreg.azurecr.io"
               }
             }
-`
+```
 
 2. Add IoT Edge Host IP Address to the Create Options of SubscriberModule
-`
+```
             "createOptions": {
                 "HostConfig": {
                   "ExtraHosts": [
@@ -24,4 +24,4 @@ This project demonstrates how to incorporate MQTT broker within IoT Edge, for ma
                     ]
                 }
               }
-`
+```
