@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "com.msft.iotlab.App",
+            "projectName": "machine1publisher"
+        }
+    ]
+}
