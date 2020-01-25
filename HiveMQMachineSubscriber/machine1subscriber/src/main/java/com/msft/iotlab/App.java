@@ -13,6 +13,7 @@ public class App
 {
     public static final Mqtt5AsyncClient mqttClient = Mqtt5Client.builder().serverHost("hivemq.test.iotlab").buildAsync();
     private static final MessageConsumer messageConsumer = new MessageConsumer();
+    private static final String TopicName = "telemetry";
 
     protected static class MessageConsumer implements Consumer<Mqtt5Publish> {
       
@@ -29,7 +30,6 @@ public class App
 
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
         ConnectToMqttBroker();
         try
         {
@@ -44,10 +44,6 @@ public class App
     public static void ConnectToMqttBroker()
     {
         mqttClient.connectWith()
-        .simpleAuth()
-            .username("admin")
-            .password("hivemq".getBytes())
-            .applySimpleAuth()
         .send()
         .whenComplete((connAck, throwable) -> {
             if (throwable != null) {
@@ -55,16 +51,16 @@ public class App
             } else {
                 // Handle successful publish, e.g. logging or incrementing a metric
                 
-                System.out.println("Connected to HiveMQ broker, subscribing to the topic telemetry.");
+                System.out.println("Connected to HiveMQ broker, subscribing to the topic " + TopicName);
                 mqttClient.subscribeWith()
-                .topicFilter("telemetry")
+                .topicFilter(TopicName)
                 .callback(messageConsumer)
                 .send()
                 .whenComplete((subAck, throwable2) -> {
                     if (throwable2 != null) {
-                        System.out.println("Failed to subscribe to the topic 'telemetry'");
+                        System.out.println("Failed to subscribe to the topic " + TopicName);
                     } else {
-                        System.out.println("Subscribed to the topic 'telemetry'");
+                        System.out.println("Subscribed to the topic " + TopicName);
                     }
                 });
             }
